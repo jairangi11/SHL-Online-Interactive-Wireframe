@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHL Online Settings</title>
+  <!-- Add Lucide icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    .container {
+      display: flex;
+      min-height: 100vh;
+      flex-direction: column;
+    }
+    
+    /* Header */
+    header {
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .header-content {
+      display: flex;
+      height: 64px;
+      align-items: center;
+      padding: 0 16px;
+    }
+    
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+    }
+    
+    .logo {
+      height: 32px;
+      width: 32px;
+      border-radius: 4px;
+      background-color: transparent;
+      border: none;
+    }
+    
+    .header-actions {
+      margin-left: auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .icon-button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px;
+      border-radius: 4px;
+    }
+    
+    .icon-button:hover {
+      background-color: #f5f5f5;
+    }
+    
+    /* Main content */
+    .main-container {
+      display: flex;
+      flex: 1;
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      width: 256px;
+      border-right: 1px solid #ddd;
+    }
+    
+    .sidebar-nav {
+      display: grid;
+      gap: 4px;
+      padding: 16px;
+    }
+    
+    .nav-button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      border-radius: 4px;
+      cursor: pointer;
+      text-align: left;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+    
+    .nav-button:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .active {
+      background-color: #f0f0f0;
+      font-weight: 600;
+    }
+    
+    /* Main content area */
+    .main-content {
+      flex: 1;
+      padding: 24px;
+    }
+    
+    /* Page header */
+    .page-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+    
+    .page-title {
+      font-size: 24px;
+      font-weight: 600;
+    }
+    
+    /* Settings content */
+    .settings-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 24px;
+    }
+    
+    .settings-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .settings-nav-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      text-decoration: none;
+      color: #333;
+    }
+    
+    .settings-nav-item:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .settings-nav-item.active {
+      background-color: #f0f0f0;
+      font-weight: 600;
+    }
+    
+    /* Form styles */
+    .form-section {
+      margin-bottom: 24px;
+    }
+    
+    .form-section-header {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    
+    .form-description {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    
+    .form-input, .form-select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+    
+    .form-select {
+      background-color: white;
+    }
+    
+    .form-checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 48px;
+      height: 24px;
+    }
+    
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 24px;
+    }
+    
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+    
+    input:checked + .toggle-slider {
+      background-color: #0066cc;
+    }
+    
+    input:checked + .toggle-slider:before {
+      transform: translateX(24px);
+    }
+    
+    /* Button styles */
+    .button {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+    
+    .button-primary {
+      background-color: #0066cc;
+      color: white;
+    }
+    
+    .button-outline {
+      background-color: transparent;
+      border: 1px solid #ddd;
+    }
+    
+    /* Footer */
+    footer {
+      border-top: 1px solid #ddd;
+      padding: 16px 0;
+      margin-top: 24px;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 0 16px;
+    }
+    
+    @media (min-width: 768px) {
+      .footer-content {
+        flex-direction: row;
+      }
+      
+      .copyright {
+        text-align: left;
+      }
+    }
+    
+    .copyright {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    .footer-link {
+      text-decoration: none;
+      color: #666;
+    }
+    
+    .separator {
+      width: 1px;
+      height: 16px;
+      background-color: #ddd;
+    }
+    
+    /* Card styles */
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: white;
+    }
+    
+    .card-header {
+      padding: 16px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .card-title {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    
+    .card-content {
+      padding: 16px;
+    }
+    
+    .actions-container {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+      margin-top: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="header-content">
+        <div class="logo-container">
+          <svg xmlns="http://www.w3.org/2000/svg" data-name="SHL Logo - Full Colour" viewBox="0 0 111.15 48.58" class="logo">
+            <path fill="#4a4a4a" d="M30 3.62A3.62 3.62 0 1 1 26.42 0 3.62 3.62 0 0 1 30 3.62" data-name="Path 1"/>
+            <path fill="#78D64B" d="M111.15 44.64a3.62 3.62 0 1 1-3.62-3.64 3.62 3.62 0 0 1 3.62 3.61" data-name="Path 2"/>
+            <path fill="#4a4a4a" d="M58 27.06h-9.47a3.05 3.05 0 0 1 0-6.1H58a3.05 3.05 0 0 1 0 6.1" data-name="Path 3"/>
+            <path fill="#4a4a4a" d="M41 48.58a3 3 0 0 1-3-3V3.61a3 3 0 1 1 6-.11v42a3 3 0 0 1-3 3" data-name="Path 5"/>
+            <path fill="#4a4a4a" d="M65.35 48.58a3 3 0 0 1-3-3V3.61a3.05 3.05 0 0 1 6.1-.11v42a3 3 0 0 1-3.05 3" data-name="Path 6"/>
+            <path fill="#4a4a4a" d="M99.46 47.65h-7.67a13.25 13.25 0 0 1-13.23-13.23V3.86a3.045 3.045 0 0 1 6.09-.11v30.67a7.16 7.16 0 0 0 7.14 7.14h7.67a3.045 3.045 0 1 1 0 6.09" data-name="Path 7"/>
+            <path fill="#4a4a4a" d="M17.27 21h-2.36a7.14 7.14 0 0 1-7.14-7.13 7.15 7.15 0 0 1 7.14-7.14H19a3.085 3.085 0 1 0 0-6.17h-4.09A13.25 13.25 0 0 0 1.68 13.79v.39a.61.61 0 0 0 0 .14 13.25 13.25 0 0 0 13.23 12.74h2.36a7.14 7.14 0 0 1 7.14 7.13v.23a7.14 7.14 0 0 1-7.14 7.13H3.05a3.05 3.05 0 1 0 0 6.1h14.22a13.25 13.25 0 0 0 13.19-12.18v-.28a1.93 1.93 0 0 1 0 .24v-1.24A13.25 13.25 0 0 0 17.27 21zm-9.5-6.67v-.11a.41.41 0 0 1 0-.11zM24.41 35a1.93 1.93 0 0 0 0 .24v.23z" data-name="Path 8"/>
+          </svg>
+          <span>SHL Online</span>
+        </div>
+        <div class="header-actions">
+          <button class="icon-button">
+            <i data-lucide="help-circle" width="20" height="20"></i>
+            <span class="sr-only">Help</span>
+          </button>
+          <button class="icon-button">
+            <i data-lucide="bell" width="20" height="20"></i>
+            <span class="sr-only">Notifications</span>
+          </button>
+          <button class="icon-button">
+            <i data-lucide="circle-user" width="20" height="20"></i>
+            <span class="sr-only">Account</span>
+          </button>
+        </div>
+      </div>
+    </header>
+    
+    <div class="main-container">
+      <!-- Sidebar Navigation -->
+      <aside class="sidebar">
+        <nav class="sidebar-nav">
+          <a href="dashboard.html" class="nav-button">
+            <i data-lucide="layout-dashboard" width="16" height="16"></i>
+            Dashboard
+          </a>
+          <a href="assessments.html" class="nav-button">
+            <i data-lucide="file-text" width="16" height="16"></i>
+            Assessments
+          </a>
+          <a href="candidates.html" class="nav-button">
+            <i data-lucide="users" width="16" height="16"></i>
+            Candidates
+          </a>
+          <a href="reports.html" class="nav-button">
+            <i data-lucide="bar-chart" width="16" height="16"></i>
+            Reports
+          </a>
+          <a href="settings.html" class="nav-button active">
+            <i data-lucide="settings" width="16" height="16"></i>
+            Settings
+          </a>
+        </nav>
+      </aside>
+      
+      <!-- Main Content -->
+      <main class="main-content">
+        <div class="page-header">
+          <h1 class="page-title">Settings</h1>
+        </div>
+        
+        <div class="settings-layout">
+          <nav class="settings-nav">
+            <a href="#" class="settings-nav-item active">
+              <i data-lucide="user" width="16" height="16"></i>
+              Profile
+            </a>
+            <a href="#" class="settings-nav-item">
+              <i data-lucide="building" width="16" height="16"></i>
+              Company
+            </a>
+            <a href="#" class="settings-nav-item">
+              <i data-lucide="credit-card" width="16" height="16"></i>
+              Billing & Plans
+            </a>
+            <a href="#" class="settings-nav-item">
+              <i data-lucide="users" width="16" height="16"></i>
+              Team Members
+            </a>
+            <a href="#" class="settings-nav-item">
+              <i data-lucide="bell" width="16" height="16"></i>
+              Notifications
+            </a>
+            <a href="#" class="settings-nav-item">
+              <i data-lucide="shield" width="16" height="16"></i>
+              Security
+            </a>
+            <a href="#" class="settings-nav-item">
+              <i data-lucide="integrations" width="16" height="16"></i>
+              Integrations
+            </a>
+            <a href="#" class="settings-nav-item">
+              <i data-lucide="activity" width="16" height="16"></i>
+              Activity Log
+            </a>
+          </nav>
+          
+          <div class="settings-content">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Profile Settings</h2>
+              </div>
+              <div class="card-content">
+                <div class="form-section">
+                  <h3 class="form-section-header">Personal Information</h3>
+                  <div class="form-group">
+                    <label class="form-label" for="fullName">Full Name</label>
+                    <input type="text" id="fullName" class="form-input" value="John Smith" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="email">Email Address</label>
+                    <input type="email" id="email" class="form-input" value="john.smith@company.com" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="jobTitle">Job Title</label>
+                    <input type="text" id="jobTitle" class="form-input" value="HR Manager" />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="phone">Phone Number</label>
+                    <input type="tel" id="phone" class="form-input" value="+1 (555) 123-4567" />
+                  </div>
+                </div>
+                
+                <div class="form-section">
+                  <h3 class="form-section-header">Account Preferences</h3>
+                  <div class="form-group">
+                    <label class="form-label" for="language">Language</label>
+                    <select id="language" class="form-select">
+                      <option value="en" selected>English</option>
+                      <option value="es">Spanish</option>
+                      <option value="fr">French</option>
+                      <option value="de">German</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="timezone">Time Zone</label>
+                    <select id="timezone" class="form-select">
+                      <option value="utc-8" selected>Pacific Time (UTC-8)</option>
+                      <option value="utc-5">Eastern Time (UTC-5)</option>
+                      <option value="utc">UTC</option>
+                      <option value="utc+1">Central European Time (UTC+1)</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="dateFormat">Date Format</label>
+                    <select id="dateFormat" class="form-select">
+                      <option value="mm-dd-yyyy" selected>MM-DD-YYYY</option>
+                      <option value="dd-mm-yyyy">DD-MM-YYYY</option>
+                      <option value="yyyy-mm-dd">YYYY-MM-DD</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="form-section">
+                  <h3 class="form-section-header">Email Notifications</h3>
+                  <div class="form-group">
+                    <div class="form-checkbox-group">
+                      <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                      </label>
+                      <div>
+                        <div class="form-label">Assessment Completions</div>
+                        <div class="form-description">Receive notifications when candidates complete assessments</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-checkbox-group">
+                      <label class="toggle-switch">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                      </label>
+                      <div>
+                        <div class="form-label">Weekly Reports</div>
+                        <div class="form-description">Receive weekly summaries of assessment activities</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="form-checkbox-group">
+                      <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="toggle-slider"></span>
+                      </label>
+                      <div>
+                        <div class="form-label">Product Updates</div>
+                        <div class="form-description">Receive notifications about new features and updates</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="actions-container">
+                  <button class="button button-outline">Cancel</button>
+                  <button class="button button-primary">Save Changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <p class="copyright">&copy; 2023 SHL Online. All rights reserved.</p>
+        <nav class="footer-links">
+          <a href="#" class="footer-link">Privacy Policy</a>
+          <div class="separator"></div>
+          <a href="#" class="footer-link">Terms of Service</a>
+        </nav>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+  </script>
+</body>
+</html> 
