@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline';">
   <title>SHL Online Reports</title>
   <!-- Add Lucide icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <!-- Add Chart.js for visualizations -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -538,115 +539,246 @@
   </div>
 
   <script>
-    // Initialize Lucide icons
-    lucide.createIcons();
-    
-    // Chart.js Visualizations
-    document.addEventListener('DOMContentLoaded', function() {
-      // Assessment Completion Trend Chart
-      const completionCtx = document.getElementById('assessmentCompletionChart').getContext('2d');
-      const completionChart = new Chart(completionCtx, {
-        type: 'bar',
-        data: {
-          labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
-          datasets: [{
-            label: 'Completed',
-            data: [8, 12, 15, 7],
-            backgroundColor: '#0066cc',
-            borderRadius: 4
-          },
-          {
-            label: 'Pending',
-            data: [4, 5, 3, 2],
-            backgroundColor: '#e6f2fe',
-            borderRadius: 4
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'top',
+    // Initialize Lucide icons and Chart.js
+    window.addEventListener('DOMContentLoaded', function() {
+      // Initialize Lucide icons
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      } else {
+        console.error('Lucide failed to load');
+        // Try to load it again
+        var script = document.createElement('script');
+        script.src = "https://unpkg.com/lucide@0.263.0/dist/umd/lucide.min.js";
+        script.onload = function() {
+          lucide.createIcons();
+        };
+        document.head.appendChild(script);
+      }
+      
+      // Chart.js Visualizations
+      if (typeof Chart !== 'undefined') {
+        // Assessment Completion Trend Chart
+        const completionCtx = document.getElementById('assessmentCompletionChart').getContext('2d');
+        const completionChart = new Chart(completionCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+            datasets: [{
+              label: 'Completed',
+              data: [8, 12, 15, 7],
+              backgroundColor: '#0066cc',
+              borderRadius: 4
             },
-            title: {
-              display: false
-            }
+            {
+              label: 'Pending',
+              data: [4, 5, 3, 2],
+              backgroundColor: '#e6f2fe',
+              borderRadius: 4
+            }]
           },
-          scales: {
-            x: {
-              grid: {
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
                 display: false
               }
             },
-            y: {
-              beginAtZero: true,
-              ticks: {
-                precision: 0
+            scales: {
+              x: {
+                grid: {
+                  display: false
+                }
+              },
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  precision: 0
+                }
               }
             }
           }
-        }
-      });
-      
-      // Score Distribution Chart
-      const scoreCtx = document.getElementById('scoreDistributionChart').getContext('2d');
-      const scoreChart = new Chart(scoreCtx, {
-        type: 'pie',
-        data: {
-          labels: ['90-100%', '80-89%', '70-79%', '60-69%', 'Below 60%'],
-          datasets: [{
-            data: [12, 19, 14, 8, 5],
-            backgroundColor: [
-              '#0c7b4d',
-              '#28a745',
-              '#74d99f',
-              '#ffc107',
-              '#dc3545'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'right'
+        });
+        
+        // Score Distribution Chart
+        const scoreCtx = document.getElementById('scoreDistributionChart').getContext('2d');
+        const scoreChart = new Chart(scoreCtx, {
+          type: 'pie',
+          data: {
+            labels: ['90-100%', '80-89%', '70-79%', '60-69%', 'Below 60%'],
+            datasets: [{
+              data: [12, 19, 14, 8, 5],
+              backgroundColor: [
+                '#0c7b4d',
+                '#28a745',
+                '#74d99f',
+                '#ffc107',
+                '#dc3545'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'right'
+              }
             }
           }
-        }
-      });
-      
-      // Assessment Types Chart
-      const typesCtx = document.getElementById('assessmentTypesChart').getContext('2d');
-      const typesChart = new Chart(typesCtx, {
-        type: 'doughnut',
-        data: {
-          labels: ['Technical', 'Leadership', 'Cognitive', 'Personality', 'Sales'],
-          datasets: [{
-            data: [15, 8, 12, 7, 5],
-            backgroundColor: [
-              '#0066cc',
-              '#5d5cd6',
-              '#7c4dff',
-              '#9966ff',
-              '#c084fc'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'right'
-            }
+        });
+        
+        // Assessment Types Chart
+        const typesCtx = document.getElementById('assessmentTypesChart').getContext('2d');
+        const typesChart = new Chart(typesCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Technical', 'Leadership', 'Cognitive', 'Personality', 'Sales'],
+            datasets: [{
+              data: [15, 8, 12, 7, 5],
+              backgroundColor: [
+                '#0066cc',
+                '#5d5cd6',
+                '#7c4dff',
+                '#9966ff',
+                '#c084fc'
+              ],
+              borderWidth: 1
+            }]
           },
-          cutout: '65%'
-        }
-      });
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'right'
+              }
+            },
+            cutout: '65%'
+          }
+        });
+      } else {
+        console.error('Chart.js failed to load');
+        // Try to load it again
+        var chartScript = document.createElement('script');
+        chartScript.src = "https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js";
+        chartScript.onload = function() {
+          // Initialize charts after loading
+          initializeCharts();
+        };
+        document.head.appendChild(chartScript);
+      }
+      
+      function initializeCharts() {
+        // Assessment Completion Trend Chart
+        const completionCtx = document.getElementById('assessmentCompletionChart').getContext('2d');
+        const completionChart = new Chart(completionCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+            datasets: [{
+              label: 'Completed',
+              data: [8, 12, 15, 7],
+              backgroundColor: '#0066cc',
+              borderRadius: 4
+            },
+            {
+              label: 'Pending',
+              data: [4, 5, 3, 2],
+              backgroundColor: '#e6f2fe',
+              borderRadius: 4
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'top',
+              },
+              title: {
+                display: false
+              }
+            },
+            scales: {
+              x: {
+                grid: {
+                  display: false
+                }
+              },
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  precision: 0
+                }
+              }
+            }
+          }
+        });
+        
+        // Score Distribution Chart
+        const scoreCtx = document.getElementById('scoreDistributionChart').getContext('2d');
+        const scoreChart = new Chart(scoreCtx, {
+          type: 'pie',
+          data: {
+            labels: ['90-100%', '80-89%', '70-79%', '60-69%', 'Below 60%'],
+            datasets: [{
+              data: [12, 19, 14, 8, 5],
+              backgroundColor: [
+                '#0c7b4d',
+                '#28a745',
+                '#74d99f',
+                '#ffc107',
+                '#dc3545'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'right'
+              }
+            }
+          }
+        });
+        
+        // Assessment Types Chart
+        const typesCtx = document.getElementById('assessmentTypesChart').getContext('2d');
+        const typesChart = new Chart(typesCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Technical', 'Leadership', 'Cognitive', 'Personality', 'Sales'],
+            datasets: [{
+              data: [15, 8, 12, 7, 5],
+              backgroundColor: [
+                '#0066cc',
+                '#5d5cd6',
+                '#7c4dff',
+                '#9966ff',
+                '#c084fc'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'right'
+              }
+            },
+            cutout: '65%'
+          }
+        });
+      }
     });
   </script>
 </body>
