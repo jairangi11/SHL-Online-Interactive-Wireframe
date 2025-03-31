@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline';">
   <title>SHL Online Assessments</title>
   <!-- Add Lucide icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/lucide@0.263.0/dist/umd/lucide.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -1194,10 +1195,22 @@
 
   <script>
     // Initialize Lucide icons
-    lucide.createIcons();
-    
-    // Assessment Selection Workflow
-    document.addEventListener('DOMContentLoaded', function() {
+    window.addEventListener('DOMContentLoaded', function() {
+      // Initialize Lucide icons
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      } else {
+        console.error('Lucide failed to load');
+        // Try to load it again
+        var script = document.createElement('script');
+        script.src = "https://unpkg.com/lucide@0.263.0/dist/umd/lucide.min.js";
+        script.onload = function() {
+          lucide.createIcons();
+        };
+        document.head.appendChild(script);
+      }
+      
+      // Assessment Selection Workflow
       const modal = document.getElementById('assessmentSelectionModal');
       const openBtn = document.getElementById('openNewAssessmentBtn');
       const closeBtn = document.getElementById('closeModalBtn');
