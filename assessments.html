@@ -269,6 +269,368 @@
       height: 16px;
       background-color: #ddd;
     }
+    
+    /* Add modal styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    
+    .modal {
+      background-color: white;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 650px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    
+    .modal-header {
+      padding: 16px 24px;
+      border-bottom: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .modal-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .modal-body {
+      padding: 24px;
+      background-color: white;
+    }
+    
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #e0e0e0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+    
+    /* Progress Steps */
+    .progress-steps {
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 20px;
+    }
+    
+    .step {
+      display: flex;
+      align-items: center;
+      margin-right: 12px;
+    }
+    
+    .step-number {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: #f0f0f0;
+      color: #888;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    .step.active .step-number {
+      background-color: #0070f3;
+      color: white;
+    }
+    
+    .step-name {
+      font-size: 14px;
+      color: #888;
+      margin-left: 8px;
+      font-weight: 400;
+    }
+    
+    .step.active .step-name {
+      color: #0070f3;
+      font-weight: 500;
+    }
+    
+    .step-connector {
+      width: 16px;
+      height: 1px;
+      background-color: #ddd;
+      margin: 0 8px;
+    }
+    
+    /* Step content */
+    .step-content {
+      display: none;
+      background-color: white;
+    }
+    
+    .step-content.active {
+      display: block;
+      background-color: white;
+    }
+    
+    .step-content h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #333;
+    }
+    
+    .step-content p {
+      color: #666;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+    
+    /* Selection methods */
+    .selection-methods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .selection-method {
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 24px 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 16px;
+      background-color: #ffffff;
+    }
+    
+    .selection-method:hover {
+      border-color: #0070f3;
+      background-color: #f8fbff;
+    }
+    
+    .selection-method.active {
+      border-color: #0070f3;
+      background-color: #f8fbff;
+    }
+    
+    .method-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0070f3;
+    }
+    
+    .selection-method:nth-child(1) .method-icon {
+      background-color: #e6f0ff;
+    }
+    
+    .selection-method:nth-child(2) .method-icon {
+      background-color: #e6f7f0;
+      color: #00a67e;
+    }
+    
+    .selection-method:nth-child(3) .method-icon {
+      background-color: #f0f0f7;
+      color: #5151d3;
+    }
+    
+    .method-title {
+      font-weight: 600;
+      font-size: 16px;
+      color: #333;
+    }
+    
+    .method-description {
+      color: #666;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    /* Role selection styles */
+    .role-categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    
+    .role-category {
+      border: 1px solid #e0e0e0;
+      border-radius: 6px;
+      padding: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+      font-weight: 500;
+    }
+    
+    .role-category:hover {
+      border-color: #0070f3;
+      background-color: #f8fbff;
+    }
+    
+    .role-category.active {
+      border-color: #0070f3;
+      background-color: #f8fbff;
+      color: #0070f3;
+    }
+
+    /* Competency selection */
+    .competency-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .competency-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    /* Assessment list */
+    .assessment-list {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+    
+    .assessment-item {
+      padding: 16px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: white;
+    }
+    
+    .assessment-item:last-child {
+      border-bottom: none;
+    }
+    
+    .assessment-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .assessment-name {
+      font-weight: 500;
+      font-size: 16px;
+      margin-bottom: 4px;
+    }
+    
+    .assessment-description {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 4px;
+    }
+    
+    .assessment-meta {
+      color: #666;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .assessment-meta i {
+      margin-right: 4px;
+    }
+
+    /* Configuration summary */
+    .config-summary {
+      background-color: white;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+    
+    .summary-header {
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+    
+    .annotation {
+      background-color: white;
+      border-left: 3px solid #ffd43b;
+      padding: 12px 16px;
+      margin: 20px 0;
+      font-size: 13px;
+      color: #666;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      line-height: 1.4;
+    }
+    
+    .annotation i {
+      color: #ffc107;
+      flex-shrink: 0;
+    }
+
+    /* Add specific styling for the Next button to match exactly */
+    #nextStepBtn {
+      background-color: #0070f3;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 14px;
+    }
+
+    #nextStepBtn i {
+      margin-left: 4px;
+    }
+
+    /* Customize step content */
+    .step-content[data-step="3"] {
+      background-color: #f8f8f8;
+      margin: -24px;
+      padding: 24px;
+    }
+
+    .step-content[data-step="3"] .assessment-list {
+      border: none;
+      background-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .step-content[data-step="3"] .assessment-item {
+      background-color: white;
+      border-radius: 4px;
+      margin-bottom: 12px;
+      border: 1px solid #eee;
+    }
+
+    .step-content[data-step="3"] .annotation {
+      margin-left: 0;
+      margin-right: 0;
+    }
   </style>
 </head>
 <body>
@@ -336,7 +698,7 @@
       <main class="main-content">
         <div class="page-header">
           <h1 class="page-title">Assessments</h1>
-          <button class="button button-primary">
+          <button class="button button-primary" id="openNewAssessmentBtn">
             <i data-lucide="plus" width="16" height="16"></i>
             New Assessment
           </button>
@@ -466,9 +828,568 @@
     </footer>
   </div>
 
+  <!-- Assessment Selection Workflow Modal -->
+  <div class="modal-overlay" id="assessmentSelectionModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title">Create New Assessment</h2>
+        <button class="icon-button" id="closeModalBtn">
+          <i data-lucide="x" width="20" height="20"></i>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+          <div class="step active" data-step="1">
+            <div class="step-number">1</div>
+            <span class="step-name">Selection Method</span>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step" data-step="2">
+            <div class="step-number">2</div>
+            <span class="step-name">Choose Assessments</span>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step" data-step="3">
+            <div class="step-number">3</div>
+            <span class="step-name">Customize</span>
+          </div>
+          <div class="step-connector"></div>
+          <div class="step" data-step="4">
+            <div class="step-number">4</div>
+            <span class="step-name">Confirm</span>
+          </div>
+        </div>
+        
+        <!-- Step 1: Selection Method -->
+        <div class="step-content active" data-step="1">
+          <h3>How would you like to select an assessment?</h3>
+          <p>Choose the method that works best for your hiring needs.</p>
+          
+          <div class="selection-methods">
+            <div class="selection-method" data-method="job-role">
+              <div class="method-icon">
+                <i data-lucide="briefcase" width="24" height="24"></i>
+              </div>
+              <div class="method-title">By Job Role</div>
+              <div class="method-description">Get recommended assessment packs tailored for specific roles</div>
+            </div>
+            
+            <div class="selection-method" data-method="competency">
+              <div class="method-icon">
+                <i data-lucide="check-circle" width="24" height="24"></i>
+              </div>
+              <div class="method-title">By Competency</div>
+              <div class="method-description">Select skills and competencies you want to assess</div>
+            </div>
+            
+            <div class="selection-method" data-method="browse">
+              <div class="method-icon">
+                <i data-lucide="search" width="24" height="24"></i>
+              </div>
+              <div class="method-title">Browse Library</div>
+              <div class="method-description">Explore our full catalog of assessments</div>
+            </div>
+          </div>
+          
+          <div class="annotation">
+            <i data-lucide="lightbulb" width="18" height="18"></i>
+            <span>Choose "By Job Role" for the fastest setup with pre-configured assessment packs designed by experts.</span>
+          </div>
+        </div>
+        
+        <!-- Step 2: Choose Assessments (Job Role) -->
+        <div class="step-content" data-step="2" data-method="job-role">
+          <h3>Select a Job Role Category</h3>
+          <p>Choose the category that best fits the position you're hiring for.</p>
+          
+          <div class="role-categories">
+            <div class="role-category" data-role="sales">Sales</div>
+            <div class="role-category" data-role="tech">Technology</div>
+            <div class="role-category" data-role="customer-service">Customer Service</div>
+            <div class="role-category" data-role="leadership">Leadership</div>
+            <div class="role-category" data-role="marketing">Marketing</div>
+            <div class="role-category" data-role="finance">Finance</div>
+            <div class="role-category" data-role="operations">Operations</div>
+            <div class="role-category" data-role="hr">Human Resources</div>
+          </div>
+          
+          <div id="recommendedPacks" style="display:none;">
+            <h3>Recommended Assessment Pack(s)</h3>
+            <p>Based on your selection, we recommend the following assessment pack(s):</p>
+            
+            <div class="assessment-list">
+              <div class="assessment-item">
+                <div class="assessment-info">
+                  <div class="assessment-name">Sales Representative Assessment Pack</div>
+                  <div class="assessment-description">Evaluates critical skills for sales success: cognitive ability, personality fit, and situational judgment</div>
+                  <div class="assessment-meta">
+                    <span><i data-lucide="clock" width="14" height="14"></i> 45 min</span>
+                    <span><i data-lucide="layers" width="14" height="14"></i> 3 assessments</span>
+                  </div>
+                </div>
+                <label class="form-checkbox">
+                  <input type="radio" name="assessment-pack" checked>
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+              <div class="assessment-item">
+                <div class="assessment-info">
+                  <div class="assessment-name">Sales Manager Assessment Pack</div>
+                  <div class="assessment-description">Comprehensive evaluation for sales leadership: cognitive, personality, leadership style and decision making</div>
+                  <div class="assessment-meta">
+                    <span><i data-lucide="clock" width="14" height="14"></i> 60 min</span>
+                    <span><i data-lucide="layers" width="14" height="14"></i> 4 assessments</span>
+                  </div>
+                </div>
+                <label class="form-checkbox">
+                  <input type="radio" name="assessment-pack">
+                  <span class="checkmark"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Step 2: Choose Assessments (Competency) -->
+        <div class="step-content" data-step="2" data-method="competency">
+          <h3>Select Skills & Competencies</h3>
+          <p>Choose up to 5 key competencies you want to assess.</p>
+          
+          <div class="competency-list">
+            <div class="competency-item">
+              <input type="checkbox" id="comp1">
+              <label for="comp1">Problem Solving</label>
+            </div>
+            <div class="competency-item">
+              <input type="checkbox" id="comp2">
+              <label for="comp2">Communication</label>
+            </div>
+            <div class="competency-item">
+              <input type="checkbox" id="comp3">
+              <label for="comp3">Leadership</label>
+            </div>
+            <div class="competency-item">
+              <input type="checkbox" id="comp4">
+              <label for="comp4">Adaptability</label>
+            </div>
+            <div class="competency-item">
+              <input type="checkbox" id="comp5">
+              <label for="comp5">Teamwork</label>
+            </div>
+            <div class="competency-item">
+              <input type="checkbox" id="comp6">
+              <label for="comp6">Attention to Detail</label>
+            </div>
+            <div class="competency-item">
+              <input type="checkbox" id="comp7">
+              <label for="comp7">Time Management</label>
+            </div>
+            <div class="competency-item">
+              <input type="checkbox" id="comp8">
+              <label for="comp8">Technical Aptitude</label>
+            </div>
+          </div>
+          
+          <div id="suggestedAssessments" style="display:none;">
+            <h3>Suggested Assessments</h3>
+            <p>Based on your selections, we recommend these assessments:</p>
+            
+            <div class="assessment-list">
+              <div class="assessment-item">
+                <div class="assessment-info">
+                  <div class="assessment-name">Cognitive Ability Assessment</div>
+                  <div class="assessment-description">Measures problem-solving, critical thinking, and learning ability</div>
+                  <div class="assessment-meta">
+                    <span><i data-lucide="clock" width="14" height="14"></i> 20 min</span>
+                  </div>
+                </div>
+                <input type="checkbox" checked>
+              </div>
+              <div class="assessment-item">
+                <div class="assessment-info">
+                  <div class="assessment-name">Communication Skills Assessment</div>
+                  <div class="assessment-description">Evaluates written and verbal communication effectiveness</div>
+                  <div class="assessment-meta">
+                    <span><i data-lucide="clock" width="14" height="14"></i> 15 min</span>
+                  </div>
+                </div>
+                <input type="checkbox" checked>
+              </div>
+              <div class="assessment-item">
+                <div class="assessment-info">
+                  <div class="assessment-name">Personality Profile</div>
+                  <div class="assessment-description">Identifies personality traits relevant to workplace performance</div>
+                  <div class="assessment-meta">
+                    <span><i data-lucide="clock" width="14" height="14"></i> 15 min</span>
+                  </div>
+                </div>
+                <input type="checkbox" checked>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Step 2: Choose Assessments (Browse Library) -->
+        <div class="step-content" data-step="2" data-method="browse">
+          <h3>Browse Assessment Library</h3>
+          <p>Explore our full collection of assessments with powerful filters.</p>
+          
+          <div style="display: flex; gap: 8px; margin-bottom: 16px;">
+            <input type="text" placeholder="Search assessments..." style="flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 4px;">
+            <button class="button button-outline">
+              <i data-lucide="filter" width="16" height="16"></i>
+              Filters
+            </button>
+          </div>
+          
+          <div class="assessment-list">
+            <div class="assessment-item">
+              <div class="assessment-info">
+                <div class="assessment-name">Cognitive Ability Assessment</div>
+                <div class="assessment-description">Measures problem-solving, critical thinking, and learning ability</div>
+                <div class="assessment-meta">
+                  <span><i data-lucide="clock" width="14" height="14"></i> 20 min</span>
+                  <span class="tag">Cognitive</span>
+                </div>
+              </div>
+              <input type="checkbox">
+            </div>
+            <div class="assessment-item">
+              <div class="assessment-info">
+                <div class="assessment-name">Personality Profile</div>
+                <div class="assessment-description">Identifies personality traits relevant to workplace performance</div>
+                <div class="assessment-meta">
+                  <span><i data-lucide="clock" width="14" height="14"></i> 15 min</span>
+                  <span class="tag">Personality</span>
+                </div>
+              </div>
+              <input type="checkbox">
+            </div>
+            <div class="assessment-item">
+              <div class="assessment-info">
+                <div class="assessment-name">Situational Judgment Test</div>
+                <div class="assessment-description">Evaluates decision-making in realistic workplace scenarios</div>
+                <div class="assessment-meta">
+                  <span><i data-lucide="clock" width="14" height="14"></i> 25 min</span>
+                  <span class="tag">Situational</span>
+                </div>
+              </div>
+              <input type="checkbox">
+            </div>
+            <div class="assessment-item">
+              <div class="assessment-info">
+                <div class="assessment-name">Leadership Style Assessment</div>
+                <div class="assessment-description">Identifies leadership preferences and approach</div>
+                <div class="assessment-meta">
+                  <span><i data-lucide="clock" width="14" height="14"></i> 15 min</span>
+                  <span class="tag">Leadership</span>
+                </div>
+              </div>
+              <input type="checkbox">
+            </div>
+          </div>
+        </div>
+        
+        <!-- Step 3: Customize -->
+        <div class="step-content" data-step="3">
+          <h3>Customize Your Assessment</h3>
+          <p>Your selected assessment pack includes these tests. You can add or remove tests as needed.</p>
+          
+          <div class="assessment-list">
+            <div class="assessment-item">
+              <div class="assessment-info">
+                <div class="assessment-name">Cognitive Ability Test</div>
+                <div class="assessment-description">Measures problem-solving and critical thinking</div>
+                <div class="assessment-meta">
+                  <i data-lucide="clock" width="14" height="14"></i> 20 min
+                </div>
+              </div>
+              <input type="checkbox" checked>
+            </div>
+            <div class="assessment-item">
+              <div class="assessment-info">
+                <div class="assessment-name">Sales Personality Profile</div>
+                <div class="assessment-description">Evaluates personality traits related to sales success</div>
+                <div class="assessment-meta">
+                  <i data-lucide="clock" width="14" height="14"></i> 15 min
+                </div>
+              </div>
+              <input type="checkbox" checked>
+            </div>
+            <div class="assessment-item">
+              <div class="assessment-info">
+                <div class="assessment-name">Sales Situational Judgment Test</div>
+                <div class="assessment-description">Tests decision-making in sales scenarios</div>
+                <div class="assessment-meta">
+                  <i data-lucide="clock" width="14" height="14"></i> 15 min
+                </div>
+              </div>
+              <input type="checkbox" checked>
+            </div>
+            <div class="assessment-item">
+              <div class="assessment-info">
+                <div class="assessment-name">Communication Assessment</div>
+                <div class="assessment-description">Optional: Add to evaluate communication skills</div>
+                <div class="assessment-meta">
+                  <i data-lucide="clock" width="14" height="14"></i> 10 min
+                </div>
+              </div>
+              <input type="checkbox">
+            </div>
+          </div>
+          
+          <div class="annotation">
+            <i data-lucide="info" width="18" height="18"></i>
+            <span>Our expert-designed packs are optimized for balance. You can add or remove tests, but we recommend including at least one cognitive and one personality assessment.</span>
+          </div>
+        </div>
+        
+        <!-- Step 4: Confirm -->
+        <div class="step-content" data-step="4">
+          <h3>Confirm Assessment Configuration</h3>
+          <p>Review your assessment details before proceeding.</p>
+          
+          <div class="config-summary">
+            <div class="summary-header">Assessment Configuration</div>
+            <div class="summary-item">
+              <span>Assessment Name:</span>
+              <span>Sales Representative Assessment</span>
+            </div>
+            <div class="summary-item">
+              <span>Number of Tests:</span>
+              <span>3</span>
+            </div>
+            <div class="summary-item">
+              <span>Total Estimated Time:</span>
+              <span>50 minutes</span>
+            </div>
+            <div class="summary-item">
+              <span>Included Tests:</span>
+              <span>Cognitive, Personality, Situational</span>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label for="assessment-name">Assessment Name</label>
+            <input type="text" id="assessment-name" value="Sales Representative Assessment" style="width: 100%; padding: 8px; border: 1px solid #ddd; border-radius: 4px; margin-top: 4px;">
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button class="button button-outline" id="prevStepBtn" style="display: none;">
+          Back
+        </button>
+        <button class="button button-primary" id="nextStepBtn">
+          Next <i data-lucide="chevron-right" width="16" height="16"></i>
+        </button>
+        <button class="button button-primary" id="finishBtn" style="display: none;">
+          Create Assessment
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script>
     // Initialize Lucide icons
     lucide.createIcons();
+    
+    // Assessment Selection Workflow
+    document.addEventListener('DOMContentLoaded', function() {
+      const modal = document.getElementById('assessmentSelectionModal');
+      const openBtn = document.getElementById('openNewAssessmentBtn');
+      const closeBtn = document.getElementById('closeModalBtn');
+      const nextBtn = document.getElementById('nextStepBtn');
+      const prevBtn = document.getElementById('prevStepBtn');
+      const finishBtn = document.getElementById('finishBtn');
+      
+      let currentStep = 1;
+      let selectedMethod = null;
+      let totalSteps = 4;
+      
+      // Open modal
+      openBtn.addEventListener('click', function() {
+        modal.style.display = 'flex';
+      });
+      
+      // Close modal
+      closeBtn.addEventListener('click', function() {
+        modal.style.display = 'none';
+        resetFlow();
+      });
+      
+      // Click outside to close
+      window.addEventListener('click', function(event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+          resetFlow();
+        }
+      });
+      
+      // Selection methods
+      const selectionMethods = document.querySelectorAll('.selection-method');
+      selectionMethods.forEach(method => {
+        method.addEventListener('click', function() {
+          // Remove active class from all methods
+          selectionMethods.forEach(m => m.classList.remove('active'));
+          // Add active class to clicked method
+          this.classList.add('active');
+          selectedMethod = this.getAttribute('data-method');
+        });
+      });
+      
+      // Role categories
+      const roleCategories = document.querySelectorAll('.role-category');
+      roleCategories.forEach(category => {
+        category.addEventListener('click', function() {
+          // Remove active class from all categories
+          roleCategories.forEach(c => c.classList.remove('active'));
+          // Add active class to clicked category
+          this.classList.add('active');
+          // Show recommended packs section
+          document.getElementById('recommendedPacks').style.display = 'block';
+        });
+      });
+      
+      // Competency selection
+      const competencyItems = document.querySelectorAll('.competency-item input');
+      let competencyCount = 0;
+      
+      competencyItems.forEach(item => {
+        item.addEventListener('change', function() {
+          if (this.checked) {
+            competencyCount++;
+          } else {
+            competencyCount--;
+          }
+          
+          if (competencyCount > 0) {
+            document.getElementById('suggestedAssessments').style.display = 'block';
+          } else {
+            document.getElementById('suggestedAssessments').style.display = 'none';
+          }
+        });
+      });
+      
+      // Next step
+      nextBtn.addEventListener('click', function() {
+        if (currentStep === 1 && !selectedMethod) {
+          alert('Please select a method to continue.');
+          return;
+        }
+        
+        if (currentStep < totalSteps) {
+          // Hide current step
+          document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.remove('active');
+          
+          // If step 1, show specific step 2 based on selection method
+          if (currentStep === 1) {
+            document.querySelector(`.step-content[data-step="2"][data-method="${selectedMethod}"]`).classList.add('active');
+          } else {
+            // Show next step
+            document.querySelector(`.step-content[data-step="${currentStep + 1}"]`).classList.add('active');
+          }
+          
+          // Update step indicators
+          document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('active');
+          document.querySelector(`.step[data-step="${currentStep + 1}"]`).classList.add('active');
+          
+          currentStep++;
+          
+          // Show back button after first step
+          prevBtn.style.display = 'block';
+          
+          // Show finish button on last step
+          if (currentStep === totalSteps) {
+            nextBtn.style.display = 'none';
+            finishBtn.style.display = 'block';
+          }
+        }
+      });
+      
+      // Previous step
+      prevBtn.addEventListener('click', function() {
+        if (currentStep > 1) {
+          // Hide current step
+          if (currentStep === 2) {
+            // If in step 2, hide the specific method content
+            document.querySelector(`.step-content[data-step="2"][data-method="${selectedMethod}"]`).classList.remove('active');
+          } else {
+            document.querySelector(`.step-content[data-step="${currentStep}"]`).classList.remove('active');
+          }
+          
+          // Show previous step
+          if (currentStep === 2) {
+            // If moving back to step 1, show step 1
+            document.querySelector(`.step-content[data-step="1"]`).classList.add('active');
+          } else {
+            document.querySelector(`.step-content[data-step="${currentStep - 1}"]`).classList.add('active');
+          }
+          
+          // Update step indicators
+          document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('active');
+          document.querySelector(`.step[data-step="${currentStep - 1}"]`).classList.add('active');
+          
+          currentStep--;
+          
+          // Hide back button on first step
+          if (currentStep === 1) {
+            prevBtn.style.display = 'none';
+          }
+          
+          // Hide finish button if not on last step
+          if (currentStep < totalSteps) {
+            nextBtn.style.display = 'block';
+            finishBtn.style.display = 'none';
+          }
+        }
+      });
+      
+      // Finish
+      finishBtn.addEventListener('click', function() {
+        alert('Assessment created successfully! You can now invite candidates.');
+        modal.style.display = 'none';
+        resetFlow();
+      });
+      
+      // Reset workflow
+      function resetFlow() {
+        currentStep = 1;
+        selectedMethod = null;
+        
+        // Reset active states
+        document.querySelectorAll('.step').forEach((step, index) => {
+          if (index === 0) {
+            step.classList.add('active');
+          } else {
+            step.classList.remove('active');
+          }
+        });
+        
+        document.querySelectorAll('.step-content').forEach((content, index) => {
+          if (content.getAttribute('data-step') === '1') {
+            content.classList.add('active');
+          } else {
+            content.classList.remove('active');
+          }
+        });
+        
+        document.querySelectorAll('.selection-method').forEach(method => {
+          method.classList.remove('active');
+        });
+        
+        // Reset buttons
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'block';
+        finishBtn.style.display = 'none';
+        
+        // Reset other sections
+        document.getElementById('recommendedPacks').style.display = 'none';
+        document.getElementById('suggestedAssessments').style.display = 'none';
+      }
+    });
   </script>
 </body>
 </html> 
